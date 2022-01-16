@@ -1,0 +1,244 @@
+{
+  "books": [
+    {
+      "id": "5",
+      "title": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
+      "genre": "Self-help",
+      "author": "Bessel Van Der Kolk",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 21.99
+      },
+      "img": "https://thumb.knygos-static.lt/C-qdvsJ10KdXtl2YG4iM4SCnUKs=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/1460602/1566282446_000000000001112010-5d5167ae5899a-asset-knyguklubas-penkios-meiles-kalbos.jpg"
+    },
+    {
+      "id": "6",
+      "title": "Midnight Library",
+      "genre": "Science fiction",
+      "author": "Matt Haig",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 15.59
+      },
+      "img": "https://thumb.knygos-static.lt/mvYZkhDZZww_5TuM25zYEFE2ODc=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2643910/1634911413_vidurnakcio-biblioteka.jpg"
+    },
+    {
+      "id": "7",
+      "title": "The Sports Gene: Inside the Science of Extraordinary Athletic Performance",
+      "genre": "Self-help",
+      "author": "David Epstein",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 17.99
+      },
+      "img": "https://thumb.knygos-static.lt/wFYbSNbECUbwEiNJ2p_jEhKnRmk=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2639639/1632899026_sporto_genas_priekis_01.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Dune",
+      "genre": "Science fiction",
+      "author": "Frank Herbert",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 29.99
+      },
+      "img": "https://thumb.knygos-static.lt/0A4t9xzoem3xo219Hwlt8fqCrQk=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2318629/1616758615_Kopa_large.png"
+    },
+    {
+      "id": "9",
+      "title": " Atlas Obscura, 2nd Edition: An Explorer's Guide to the World's Hidden Wonders",
+      "genre": "Science fiction",
+      "author": "Joshua Foer",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 35.99
+      },
+      "img": "https://thumb.knygos-static.lt/mJQiOlO7DaAwcWsUQpAzVunmCeU=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2448208/1609917771_01_obscura_priekis.jpg"
+    },
+    {
+      "id": "10",
+      "title": "THE CHRISTMAS PARTY",
+      "genre": "Romance",
+      "author": "Karen Swan",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 24.39
+      },
+      "img": "https://thumb.knygos-static.lt/4AQV8oO5v-xYMVEX5uj3i4j54QI=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2632635/1630325971_kaledu-vakarelis-1.jpg"
+    },
+    {
+      "id": "11",
+      "title": "The Obesity Code - Unlocking the Secrets of Weight Loss",
+      "genre": "Self-help",
+      "author": "Jason Fung",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 17.99
+      },
+      "img": "https://thumb.knygos-static.lt/yo9LHWvLZofBg1QgIlxIOLdOC3c=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2639636/1632895452_01_nutukimo_kodas_stroke.jpg"
+    },
+    {
+      "id": "12",
+      "title": "Range: Why Generalists Triumph in a Specialized World",
+      "genre": "Self-help",
+      "author": "David Epstein",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 17.19
+      },
+      "img": "https://thumb.knygos-static.lt/j-bjKHRKtzc1-uJRGfSZ9-hOvNE=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/1507158/1596783958_priekis_sviesesnis.jpg"
+    },
+    {
+      "id": "13",
+      "title": "Principles: Life and Work",
+      "genre": "Self-help",
+      "author": "Ray Dalio",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 19.99
+      },
+      "img": "https://thumb.knygos-static.lt/PJuDr17c9oH7WWplaulA1FlHMhM=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/1475667/1574670617_029_Principai_VIRSELIS_EPUB_2019_11_21_PRIEKIS.jpg"
+    },
+    {
+      "id": "14",
+      "title": "The Psychology of Money",
+      "genre": "Self-help",
+      "author": "Morgan Housel",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 14.39
+      },
+      "img": "https://thumb.knygos-static.lt/yv65YVExcYGZHzMKqaggqo8YJlw=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2609870/1627998923_Pinigu_psichologija_virselis.jpg"
+    },
+    {
+      "id": "15",
+      "title": "The Power of Your Subconscious Mind",
+      "genre": "Science fiction",
+      "author": "Joseph Murphy",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 11.99
+      },
+      "img": "https://thumb.knygos-static.lt/t5hIl1ggHC_GJe3iMyg8uPwYBLw=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/1461602/1566801146_000000000001112034-5d5f861986d8f-asset-knyguklubas-jusu-pasamones-galia.jpg"
+    },
+    {
+      "id": "16",
+      "title": "Klara and the Sun",
+      "genre": "Romance",
+      "author": "Kazuo Ishiguro",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 17.49
+      },
+      "img": "https://thumb.knygos-static.lt/irshxYTm2HejENOUmy1sWWYrhV4=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2643900/1635229515_Ishiguro_Klara_ir_saule_72max.jpg"
+    },
+    {
+      "id": "17",
+      "title": "THE NOEL DIARY",
+      "genre": "Romance",
+      "author": "Richard Paul Evans",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 16.99
+      },
+      "img": "https://thumb.knygos-static.lt/mWzxB2tfUtKdJK19ylumXDUTKPE=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2637787/1632204176_noeles-dienorastis-1.jpg"
+    },
+    {
+      "id": "18",
+      "title": " Behind Closed Doors",
+      "genre": "Romance",
+      "author": "B.A. Paris",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 18.49
+      },
+      "img": "https://thumb.knygos-static.lt/5oDxN_C3VfS9FxOn0WNXFVxrfNA=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/1153381/1496064596_18700235_1349253291829100_4083575183174590972_n.jpg"
+    },
+    {
+      "id": "19",
+      "title": "Arton grader minus",
+      "genre": "Romance",
+      "author": "Stefan Ahnhem",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 19.09
+      },
+      "img": "https://thumb.knygos-static.lt/PT627rpM6VCOLOhxq486mJi57Nw=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2652425/1636969377_Ahnheim_18laipsniu_salcio_72max.jpg"
+    },
+    {
+      "id": "20",
+      "title": "The Taster",
+      "genre": "Romance",
+      "author": "V.S. Alexander",
+      "inStock": true,
+      "price": {
+        "currency": "EUR",
+        "value": 18.49
+      },
+      "img": "https://thumb.knygos-static.lt/RHPVacc6LtqOGqh8fj61JI3J10Q=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2588832/1616667865_Maisto_ragautoja_450x652_1.jpg"
+    }
+  ],
+  "user": [
+    {
+      "id": "",
+      "role": "",
+      "username": "",
+      "firstName": "",
+      "lastName": "",
+      "password": "",
+      "email": "",
+      "telephoneNumber": "",
+      "address": "",
+      "city": "",
+      "wishlistId": ""
+    },
+    {
+      "username": "test",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "flame@burst.com",
+      "telephoneNumber": "878123123",
+      "address": "Gurkliu g. 7",
+      "city": "Jurbarkas",
+      "password": "test",
+      "role": "user",
+      "id": "5VVnsBn"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "",
+      "userId": ""
+    }
+  ],
+  "wishlistBooks": [
+    {
+      "wishlistId": "",
+      "bookId": ""
+    }
+  ],
+  "orderItems": [],
+  "orders": [
+    {
+      "id": "",
+      "userId": "",
+      "status": "",
+      "totalAmount": ""
+    }
+  ]
+}
