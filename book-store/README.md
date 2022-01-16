@@ -11,9 +11,7 @@
 
 ## Projekto paleidimas
   1. server direktorijoje paleiskite serverį:
-    * windows - npm run start-win
-    * Unix/Mac - npm run start-unix
+    * npm start
   2. šio failo direktorijoje paleiskite serverį:
-    * windows - npm run start-win
-    * Unix/Mac - npm run start-unix
+    * npm start
   3. Naršyklėje automatiškai turėtų atsidaryti aplikacijos pradinis langas
