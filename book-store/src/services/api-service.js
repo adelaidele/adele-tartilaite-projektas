@@ -34,9 +34,29 @@ const fetchAllBooks = async () => {
   return formatedBooks;
 };
 
+const fetchBook = async (id) => {
+  const response = await annonymousInstance.get(`/books/${id}`);
+
+  return response.data;
+}
+
+const fetchFormatedBook = async (id) => {
+  const [book] = await Promise.all([
+    fetchBook(id)
+  ]);
+
+  const formattedBook = {
+    ...book,
+    price: `${book.price.value} ${book.price.currency}`
+  }
+
+  return formattedBook;
+}
+
 const APIService = {
   fetchBooks,
   fetchAllBooks,
+  fetchFormatedBook,
 };
 
 
