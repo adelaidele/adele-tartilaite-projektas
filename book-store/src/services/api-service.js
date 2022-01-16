@@ -14,6 +14,36 @@ const fetchBooks = async () => {
   const response = await annonymousInstance.get("/books");
   return response.data;
 };
+
+const fetchBook = async (id) => {
+  const response = await annonymousInstance.get(`/books/${id}`);
+
+  return response.data;
+}
+
+const addBook = async (bookData) => {
+  const response = await annonymousInstance.post(`/books`, bookData);
+
+  return response.data;
+}
+
+const addUser = async (userData) => {
+  const response = await annonymousInstance.post(`/user`, userData);
+
+  return response.data;
+}
+
+const deleteBook = async (id) => {
+  const response  = await annonymousInstance.delete(`/books/${id}`);
+  return response;
+}
+
+const updateBook = async (id, data) => {
+  console.log(id,data);
+  const response = await annonymousInstance.put(`/books/${id}`, {...data, id: id});
+  return response;
+}
+
 const fetchAllBooks = async () => {
   const [books] = await Promise.all([
     fetchBooks()
@@ -34,12 +64,6 @@ const fetchAllBooks = async () => {
   return formatedBooks;
 };
 
-const fetchBook = async (id) => {
-  const response = await annonymousInstance.get(`/books/${id}`);
-
-  return response.data;
-}
-
 const fetchFormatedBook = async (id) => {
   const [book] = await Promise.all([
     fetchBook(id)
@@ -56,8 +80,12 @@ const fetchFormatedBook = async (id) => {
 const APIService = {
   fetchBooks,
   fetchAllBooks,
+  fetchBook,
+  addBook,
+  deleteBook,
   fetchFormatedBook,
+  updateBook,
+  addUser
 };
-
 
 export default APIService;
