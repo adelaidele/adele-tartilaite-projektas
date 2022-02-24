@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import {
   Button,
   Box,
@@ -13,34 +13,33 @@ import {
   Snackbar,
   FormControl,
   InputLabel,
-} from "@mui/material";
-import MuiAlert from "@mui/material/Alert";
-import APIService from "../../services/api-service";
-import "../../index.css";
+} from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import APIService from '../../services/api-service';
+import '../../index.css';
 
 const validationSchema = yup.object({
-  title: yup.string("Enter a title").required("Email is required"),
-  genre: yup.string("Enter a title").required("Email is required"),
-  author: yup.string("Enter a title").required("Email is required"),
-  img: yup.string("Enter a title").required("Email is required"),
-  price: yup.string("Enter a title").required("Email is required"),
-  currency: yup.string("Select currency").required("Currency is required"),
+  title: yup.string('Enter a title').required('Email is required'),
+  genre: yup.string('Enter a title').required('Email is required'),
+  author: yup.string('Enter a title').required('Email is required'),
+  img: yup.string('Enter a title').required('Email is required'),
+  price: yup.string('Enter a title').required('Email is required'),
+  currency: yup.string('Select currency').required('Currency is required'),
 });
 
 const initialValues = {
-  id: "",
-  title: "",
-  genre: "",
-  author: "",
-  img: "",
-  price: "",
-  currency: "",
+  id: '',
+  title: '',
+  genre: '',
+  author: '',
+  img: '',
+  price: '',
+  currency: '',
 };
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
+const Alert = React.forwardRef((props, ref) => (
+  <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+));
 
 const ManagementPageBookForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
@@ -52,7 +51,7 @@ const ManagementPageBookForm = () => {
 
   const navigateToManagementPage = useCallback(() => {
     navigate(`/management`);
-  },[navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     (async () => {
@@ -76,7 +75,7 @@ const ManagementPageBookForm = () => {
   const formik = useFormik({
     initialValues: formValues,
     enableReinitialize: true,
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: (values) => {
       const request = {
         ...values,
@@ -104,7 +103,7 @@ const ManagementPageBookForm = () => {
   });
 
   return (
-    <Container maxWidth="xs" component="main" sx={{ pt: "7vh" }}>
+    <Container maxWidth="xs" component="main" sx={{ pt: '7vh' }}>
       <Box component="form" onSubmit={formik.handleSubmit} noValidate>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={12}>
@@ -170,25 +169,27 @@ const ManagementPageBookForm = () => {
           <Grid item xs={6} sm={6}>
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="currency-select-label">
-                Currency
-                </InputLabel>
+                <InputLabel id="currency-select-label">Currency</InputLabel>
                 <Select
                   labelId="currency-select-label"
                   id="currency-select"
                   value={formik.values.currency}
                   label="Currency"
                   onBlur={formik.handleBlur}
-                  onChange={e => formik.setFieldValue('currency', e.target.value)}
-                  error={formik.touched.currency && Boolean(formik.errors.currency)}
+                  onChange={(e) =>
+                    formik.setFieldValue('currency', e.target.value)
+                  }
+                  error={
+                    formik.touched.currency && Boolean(formik.errors.currency)
+                  }
                 >
-                <MenuItem value="EUR">Eur</MenuItem>
-                <MenuItem value="USD">Usd</MenuItem>
+                  <MenuItem value="EUR">Eur</MenuItem>
+                  <MenuItem value="USD">Usd</MenuItem>
                 </Select>
               </FormControl>
               <p className="select-error-message">
-              {formik.touched.currency && formik.errors.currency}
-            </p>
+                {formik.touched.currency && formik.errors.currency}
+              </p>
             </Box>
           </Grid>
           <Button color="primary" variant="contained" fullWidth type="submit">
@@ -203,7 +204,7 @@ const ManagementPageBookForm = () => {
           <Alert
             onClose={handleClose}
             severity="success"
-            sx={{ width: "100%" }}
+            sx={{ width: '100%' }}
           >
             This is a success message!
           </Alert>

@@ -26,9 +26,8 @@ const NavbarUserSection = () => (
   <UserSectionContainer>
     <UserCapsule>
       <MenuIcon sx={{ fontSize: 18 }} />
-        <AccountCircleIcon sx={{ fontSize: 34 }} />
+      <AccountCircleIcon sx={{ fontSize: 34 }} />
     </UserCapsule>
-
   </UserSectionContainer>
 );
 

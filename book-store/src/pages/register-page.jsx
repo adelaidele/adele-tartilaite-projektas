@@ -1,42 +1,41 @@
-import React, { useState } from "react";
-import { TextField, FormControlLabel, Checkbox, Grid } from "@mui/material";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import AuthForm from "../components/auth-form/auth-form";
-import APIService from "../services/api-service";
+import React from 'react';
+import { TextField, Grid } from '@mui/material';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import AuthForm from '../components/auth-form/auth-form';
+import APIService from '../services/api-service';
 
 const validationSchema = yup.object({
-  username: yup.string("Enter User Name").required("User Name is required"),
-  firstName: yup.string("Enter First Name").required("First Name is required"),
-  lastName: yup.string("Enter Last Name").required("Last Name is required"),
-  email: yup.string("Enter email").required("Email is required"),
+  username: yup.string('Enter User Name').required('User Name is required'),
+  firstName: yup.string('Enter First Name').required('First Name is required'),
+  lastName: yup.string('Enter Last Name').required('Last Name is required'),
+  email: yup.string('Enter email').required('Email is required'),
   telephoneNumber: yup
-    .string("Enter Telephne Number")
-    .required("Telephne Number is required"),
-  address: yup.string("Enter address").required("Address is required"),
-  city: yup.string("Enter city").required("City is required"),
-  password: yup.string("Enter a password").required("Password is required"),
+    .string('Enter Telephne Number')
+    .required('Telephne Number is required'),
+  address: yup.string('Enter address').required('Address is required'),
+  city: yup.string('Enter city').required('City is required'),
+  password: yup.string('Enter a password').required('Password is required'),
 });
 
 const initialValues = {
-  username: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  telephoneNumber: "",
-  address: "",
-  city: "",
-  password: "",
+  username: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  telephoneNumber: '',
+  address: '',
+  city: '',
+  password: '',
 };
 
 const RegisterPage = () => {
-
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues,
     enableReinitialize: true,
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: (values) => {
-      APIService.addUser({ ...values, role: "user" });
+      APIService.addUser({ ...values, role: 'user' });
     },
   });
 
@@ -167,8 +166,6 @@ const RegisterPage = () => {
             error={formik.touched.city && Boolean(formik.errors.city)}
             helperText={formik.touched.city && formik.errors.city}
           />
-        </Grid>
-        <Grid item sx={{ mb: 2 }} xs={12}>
         </Grid>
       </Grid>
     </AuthForm>

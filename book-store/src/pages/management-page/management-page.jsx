@@ -1,25 +1,27 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { Box, Button, Modal, Typography } from "@mui/material";
-import APIService from "../../services/api-service";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useNavigate } from "react-router-dom";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
-import "../../index.css";
+import React, { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Modal, Typography } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+
+import APIService from '../../services/api-service';
+import '../../index.css';
+
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -38,7 +40,7 @@ const ManagementPage = () => {
     (id) => {
       navigate(`/management/edit/${id}`);
     },
-    [navigate],
+    [navigate]
   );
 
   const handleDelete = (book) => {
@@ -80,7 +82,7 @@ const ManagementPage = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Do you want to delete book "{selectedBook.title}"?
+            Do you want to delete book {selectedBook.title}?
           </Typography>
           <Button
             variant="contained"
@@ -110,7 +112,7 @@ const ManagementPage = () => {
             {books.map((book) => (
               <TableRow
                 key={book.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align="right">{book.id}</TableCell>
                 <TableCell align="right">

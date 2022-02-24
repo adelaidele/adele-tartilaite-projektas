@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import APIService from "../../services/api-service";
-import SingleBookPageCard from "./single-book-page-card";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import APIService from '../../services/api-service';
+import SingleBookPageCard from './single-book-page-card';
 
 const SingleBookPage = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const SingleBookPage = () => {
       setBook(fetchedBook);
     })();
   }, []);
-  
+
   return (
     <SingleBookPageCard
       id={book.id}

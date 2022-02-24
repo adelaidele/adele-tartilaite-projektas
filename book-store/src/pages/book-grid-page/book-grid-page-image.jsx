@@ -1,9 +1,9 @@
-import React from "react";
-import SquareContainer from "./../../components/square-container";
+import React from 'react';
+import SquareContainer from '../../components/square-container';
 
 const BookGridPageImage = ({ img }) => (
   <SquareContainer>
-    <img src={img} alt="#"/>
+    <img src={img} alt="#" />
   </SquareContainer>
 );
 

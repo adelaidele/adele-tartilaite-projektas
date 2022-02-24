@@ -1,24 +1,24 @@
-import React from "react";
-import { TextField, Grid } from "@mui/material";
-import AuthForm from "../components/auth-form/auth-form";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { TextField, Grid } from '@mui/material';
+import AuthForm from '../components/auth-form/auth-form';
 
 const validationSchema = yup.object({
-  email: yup.string("Enter a email").required("Email is required"),
-  password: yup.string("Enter a password").required("Password is required"),
+  email: yup.string('Enter a email').required('Email is required'),
+  password: yup.string('Enter a password').required('Password is required'),
 });
 
 const initialValues = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 };
 
 const LoginPage = () => {
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues,
     enableReinitialize: true,
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: (values) => console.log(values),
   });
 
@@ -45,7 +45,7 @@ const LoginPage = () => {
           />
         </Grid>
         <Grid item xs={12} sx={{ mb: 4 }}>
-        <TextField
+          <TextField
             fullWidth
             id="password"
             variant="outlined"
