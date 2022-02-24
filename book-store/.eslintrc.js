@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'airbnb',
-    'prettier'
+    'prettier',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -16,26 +16,25 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'prettier'
-  ],
+  plugins: ['react', 'prettier'],
   rules: {
     'react/prop-types': 0,
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
     'react/jsx-props-no-spreading': 0,
     'import/no-cycle': 0,
     'no-tabs': 0,
-    'indent': [1, "tab"],
-    "prettier/prettier": ["error"],
-    'quotes': ["error", "single", { "allowTemplateLiterals": true }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    indent: [0, 'tab'],
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'prettier/prettier': [
       'error',
       {
-        'endOfLine': 'auto',
-        'indent': [1,"tab"]
-      }
-    ]
+        endOfLine: 'auto',
+        indent: [1, 'tab'],
+      },
+    ],
   },
 };

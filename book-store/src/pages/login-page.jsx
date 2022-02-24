@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TextField, Grid, Alert, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { TextField, Grid } from '@mui/material';
 import AuthForm from '../components/auth-form/auth-form';
 
 const validationSchema = yup.object({
-  email: yup.string('Enter a email').required('Email is required'),
-  password: yup.string('Enter a password').required('Password is required'),
+  email: yup
+    .string()
+    .email('Email is not valid!')
+    .required('Email is required!'),
+  password: yup.string().required('Password is required!'),
 });
 
 const initialValues = {
@@ -15,47 +19,86 @@ const initialValues = {
 };
 
 const LoginPage = () => {
-  const formik = useFormik({
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const handleLogin = ({ email, password }) => {
+    console.log(email, password);
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    isValid,
+    dirty,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useFormik({
     initialValues,
-    enableReinitialize: true,
     validationSchema,
-    onSubmit: (values) => console.log(values),
+    onSubmit: handleLogin,
   });
 
   return (
     <AuthForm
-      title="Log in"
-      linkTo="/register"
-      linkTitle="No account? Create one"
-      onSubmit={formik.handleSubmit}
+      title="Login"
+      linkTitle="Don't have an account? Register"
+      onSubmit={handleSubmit}
+      loading={isSubmitting}
+      isValid={dirty && isValid}
     >
       <Grid container spacing={4}>
+        {errorMsg ? (
+          <Grid item xs={12}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => setErrorMsg(null)}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              {errorMsg}
+            </Alert>
+          </Grid>
+        ) : null}
         <Grid item xs={12}>
           <TextField
-            fullWidth
-            autoFocus
-            id="email"
             variant="outlined"
-            name="email"
+            fullWidth
+            id="email"
             label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
+            autoFocus
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
+            disabled={isSubmitting}
           />
         </Grid>
         <Grid item xs={12} sx={{ mb: 4 }}>
           <TextField
-            fullWidth
-            id="password"
             variant="outlined"
-            name="password"
+            fullWidth
             label="Password"
             type="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
+            id="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password}
+            disabled={isSubmitting}
           />
         </Grid>
       </Grid>
