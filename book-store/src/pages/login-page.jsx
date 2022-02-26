@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { TextField, Grid, Alert, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import AuthForm from '../components/auth-form/auth-form';
+import AuthService from '../services/auth-service';
+import routes from '../routing/routes';
 
 const validationSchema = yup.object({
   email: yup
@@ -19,10 +22,16 @@ const initialValues = {
 };
 
 const LoginPage = () => {
+  const [searchParams] = useSearchParams();
   const [errorMsg, setErrorMsg] = useState(null);
 
-  const handleLogin = ({ email, password }) => {
-    console.log(email, password);
+  const handleLogin = async ({ email, password }) => {
+    try {
+      const redirectTo = searchParams.get('redirectTo');
+      await AuthService.login({ email, password }, redirectTo);
+    } catch (error) {
+      setErrorMsg(error.message);
+    }
   };
 
   const {
@@ -44,6 +53,7 @@ const LoginPage = () => {
   return (
     <AuthForm
       title="Login"
+      linkTo={routes.RegisterPage}
       linkTitle="Don't have an account? Register"
       onSubmit={handleSubmit}
       loading={isSubmitting}

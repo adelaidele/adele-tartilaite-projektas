@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TextField,
   FormControlLabel,
   Checkbox,
   Grid,
   Box,
+  InputAdornment,
+  CircularProgress,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
+import authService from '../services/auth-service';
 import AuthForm from '../components/auth-form/auth-form';
+import routes from '../routing/routes';
 
 const validationSchema = yup.object({
   name: yup
@@ -54,6 +60,14 @@ const validationSchema = yup.object({
     .required('Repeat password is required')
     .oneOf([yup.ref('password')], 'Passwords do not match'),
   subscribed: yup.boolean().required('Is required'),
+  emailChecked: yup
+    .boolean()
+    .required('Email check is required')
+    .oneOf([true], 'Email must be checked'),
+  emailAvailable: yup
+    .boolean()
+    .required('Email availability is required')
+    .oneOf([true], 'Email must be available'),
 });
 
 const initialValues = {
@@ -68,13 +82,15 @@ const initialValues = {
 };
 
 const RegisterPage = () => {
-  const onSubmit = ({
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async ({
     emailChecked,
     emailAvailable,
     subscribed,
     ...formData
   }) => {
-    console.log('registered', formData);
+    await authService.register(formData);
   };
 
   const {
@@ -86,6 +102,7 @@ const RegisterPage = () => {
     isSubmitting,
     handleChange,
     handleBlur,
+    setFieldValue,
     setValues,
     handleSubmit,
   } = useFormik({
@@ -110,9 +127,42 @@ const RegisterPage = () => {
     }
   };
 
+  const handleEmailBlur = (e) => {
+    handleBlur(e);
+    if (!errors.email) {
+      setIsLoading(true);
+      (async () => {
+        const emailAvailable = await authService.checkEmail(values.email);
+        setFieldValue('emailChecked', true);
+        setFieldValue('emailAvailable', emailAvailable);
+        setIsLoading(false);
+      })();
+    }
+  };
+
+  let emailEndAdornment;
+  if (isLoading) {
+    emailEndAdornment = (
+      <InputAdornment position="end">
+        <CircularProgress size={24} />
+      </InputAdornment>
+    );
+  } else if (values.emailChecked) {
+    emailEndAdornment = values.emailAvailable ? (
+      <InputAdornment position="end">
+        <CheckCircleIcon color="success" />
+      </InputAdornment>
+    ) : (
+      <InputAdornment position="end">
+        <ErrorIcon color="error" />
+      </InputAdornment>
+    );
+  }
+
   return (
     <AuthForm
       title="Register"
+      linkTo={routes.LoginPage}
       linkTitle="Already have an account? Login"
       isValid={dirty && isValid}
       onSubmit={handleSubmit}
@@ -155,9 +205,13 @@ const RegisterPage = () => {
               variant="outlined"
               fullWidth
               label="Email"
+              InputProps={{
+                endAdornment: emailEndAdornment,
+              }}
               // Props provided by Formik
               name="email"
               onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
               value={values.email}
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
