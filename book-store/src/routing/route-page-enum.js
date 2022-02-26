@@ -9,6 +9,7 @@ import SingleBookPage from '../pages/single-book-page/single-book-page';
 import ManagementPageBookForm from '../pages/management-page/management-page-book-form';
 import Cart from '../components/cart/Cart';
 import Checkout from '../components/checkout/Checkout';
+import ProfilePage from '../pages/profile-page';
 
 export default {
   PageLayout,
@@ -22,4 +23,5 @@ export default {
   ManagementPageBookForm,
   Cart,
   Checkout,
+  ProfilePage
 };

@@ -58,6 +58,11 @@ export default [
         pageName: 'ManagementPageBookForm',
         auth: ADMIN,
       },
+      {
+        path: 'profile',
+        pageName: 'ProfilePage',
+        auth: LOGGED_IN,
+      },
     ],
   },
 ];
