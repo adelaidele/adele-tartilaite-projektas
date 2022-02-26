@@ -23,6 +23,8 @@ server.use(express.json());
 // Response handlers
 // Visas užklasas kurios prasideda  adresu '/api/auth' serveris nukreips į authRouter
 server.use('/api', authRouter);
+server.use('/api/genres', genresRouter);
+server.use('/api/filters', filtersRouter);
 
 // Serveriui perduodamos užklausos, kurios bus gautos į šio kompiuterio 5000'inį port'ą
 server.listen(SERVER_PORT, () => {

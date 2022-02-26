@@ -128,6 +128,41 @@ const register = () => new Promise(((success) => {
   }, 2000);
 }));
 
+const fetchFilters = async (genreId) => {
+  const { token } = store.getState().auth;
+  let queryParams = '';
+  if (genreId) {
+    queryParams = `?genre=${genreId}`;
+  }
+
+  try {
+    const { data } = await annonymousInstance.get(`/filters${queryParams}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const fetchGenres = async () => {
+  const { token } = store.getState().auth;
+  try {
+    const { data } = await annonymousInstance.get('/genres', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const APIService = {
   fetchBooks,
   fetchAllBooks,
@@ -139,6 +174,8 @@ const APIService = {
   checkEmail,
   register,
   addOrder,
+  fetchFilters,
+  fetchGenres,
 };
 
 export default APIService;
