@@ -5,18 +5,15 @@ const dynamicSymbols = ['*', ':'];
 const buildRoute = (allPaths, { path, children, pageName }) => {
   if (children) {
     const childrenRoutesArr = Object.entries(children.reduce(buildRoute, {}));
-    const fullChildrenRoutes = childrenRoutesArr.reduce(
-      (childrenRoutes, [childPageName, childPath]) => {
+    const fullChildrenRoutes = childrenRoutesArr
+      .reduce((childrenRoutes, [childPageName, childPath]) => {
         const newChildrenRoutes = { ...childrenRoutes };
-        newChildrenRoutes[childPageName] =
-          path[path.length - 1] !== '/'
-            ? `${path}/${childPath}`
-            : path + childPath;
+        newChildrenRoutes[childPageName] = path[path.length - 1] !== '/'
+          ? `${path}/${childPath}`
+          : path + childPath;
 
         return newChildrenRoutes;
-      },
-      {}
-    );
+      }, {});
     return {
       ...allPaths,
       ...fullChildrenRoutes,

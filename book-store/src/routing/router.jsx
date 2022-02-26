@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import { VISITOR, ADMIN, LOGGED_IN } from './auth-types';
 import RequireVisitor from './require-visitor';
 import RequireAdmin from './require-admin';
@@ -8,24 +12,17 @@ import routeStructure from './route-structure';
 import routePageEnum from './route-page-enum';
 
 const addRouteProtection = {
-  [VISITOR]: (Page) => (
-    <RequireVisitor>
-      <Page />
-    </RequireVisitor>
-  ),
-  [ADMIN]: (Page) => (
-    <RequireAdmin>
-      <Page />
-    </RequireAdmin>
-  ),
-  [LOGGED_IN]: (Page) => (
-    <RequireLoggedIn>
-      <Page />
-    </RequireLoggedIn>
-  ),
+  [VISITOR]: (Page) => <RequireVisitor><Page /></RequireVisitor>,
+  [ADMIN]: (Page) => <RequireAdmin><Page /></RequireAdmin>,
+  [LOGGED_IN]: (Page) => <RequireLoggedIn><Page /></RequireLoggedIn>,
 };
 
-const buildRouteRecursive = ({ path, pageName, auth, children }) => {
+const buildRouteRecursive = ({
+  path,
+  pageName,
+  auth,
+  children,
+}) => {
   const Page = routePageEnum[pageName];
   if (children) {
     return (
@@ -35,11 +32,9 @@ const buildRouteRecursive = ({ path, pageName, auth, children }) => {
     );
   }
 
-  const element = addRouteProtection[auth] ? (
-    addRouteProtection[auth](Page)
-  ) : (
-    <Page />
-  );
+  const element = addRouteProtection[auth]
+    ? addRouteProtection[auth](Page)
+    : <Page />;
 
   return (
     <Route
@@ -53,7 +48,9 @@ const buildRouteRecursive = ({ path, pageName, auth, children }) => {
 
 const Router = () => (
   <BrowserRouter>
-    <Routes>{routeStructure.map(buildRouteRecursive)}</Routes>
+    <Routes>
+      {routeStructure.map(buildRouteRecursive)}
+    </Routes>
   </BrowserRouter>
 );
 

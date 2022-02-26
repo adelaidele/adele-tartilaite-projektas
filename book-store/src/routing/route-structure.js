@@ -1,37 +1,47 @@
-import { VISITOR, ADMIN, USER } from './auth-types';
+import { VISITOR, LOGGED_IN, ADMIN, USER } from "./auth-types";
 
 export default [
   {
-    path: '/',
-    pageName: 'PageLayout',
+    path: "/",
+    pageName: "PageLayout",
     children: [
       {
         path: 'home',
-        pageName: 'HomePage',
+        pageName: "HomePage",
       },
       {
-        path: 'login',
-        pageName: 'LoginPage',
+        path: "login",
+        pageName: "LoginPage",
         auth: VISITOR,
       },
       {
-        path: 'register',
-        pageName: 'RegisterPage',
+        path: "register",
+        pageName: "RegisterPage",
         auth: VISITOR,
       },
       {
-        path: 'books',
-        pageName: 'BookGridPage',
+        path: "checkout",
+        pageName: "Checkout",
         auth: USER,
       },
       {
-        path: 'books/:id',
-        pageName: 'SingleBookPage',
+        path: "books",
+        pageName: "BookGridPage",
+        auth: USER
+      },
+      {
+        path: "books/:id",
+        pageName: "SingleBookPage",
         auth: USER,
       },
       {
-        path: '*',
-        pageName: 'ErrorPage',
+        path: "*",
+        pageName: "ErrorPage",
+      },
+      {
+        path: "cart",
+        pageName: "Cart",
+        auth: USER
       },
       {
         path: 'management',
@@ -51,3 +61,4 @@ export default [
     ],
   },
 ];
+

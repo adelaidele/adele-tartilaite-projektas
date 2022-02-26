@@ -1,0 +1,78 @@
+import React from "react";
+import { AppBar, Container, Box, Button, Zoom, Tooltip } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, selectAuth } from "../../../store/auth";
+import Link from "./navbar-link";
+import routes from "../../../routing/routes";
+import { styled } from "@mui/material";
+import { theme } from "../../../libs/ThemeCreator";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+
+const Navbar = ({ sidebarIcon }) => {
+  const { loggedIn, user } = useSelector(selectAuth);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => dispatch(logout());
+
+  const StyleAppBar = styled(AppBar)(({ theme }) => ({
+    height: 56,
+    boxShadow: "0px 6px 4px -1px rgba(0,0,0,0.2)",
+    background: theme.palette.primary.light,
+  }));
+
+  const StyledMenuBox = styled(Box)(({ theme }) => ({
+    display: "flex",
+  }));
+
+  console.log(user);
+
+  return (
+    <StyleAppBar position="sticky" theme={theme}>
+      <Container
+        sx={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <StyledMenuBox>
+          {sidebarIcon ?? null}
+          <Link to={routes.HomePage}>Home</Link>
+
+          <Link to={routes.BookGridPage}>Books</Link>
+          {user && user.role === "ADMIN" ? (
+            <Link to={routes.ManagementPage}>Management panel</Link>
+          ) : null}
+        </StyledMenuBox>
+        <StyledMenuBox>
+          {user ? (
+            <Link to={routes.Cart}>
+              {" "}
+              <ShoppingBasketIcon />{" "}
+            </Link>
+          ) : null}
+          {loggedIn ? (
+            <Tooltip TransitionComponent={Zoom} title="Logout">
+              <Button
+                color="primary"
+                variant="small"
+                sx={{ my: 1 }}
+                onClick={handleLogout}
+              >
+                <LogoutIcon />
+              </Button>
+            </Tooltip>
+          ) : (
+            <Box sx={{ display: "flex" }}>
+              <Link to={routes.LoginPage}>Login</Link>
+              <Link to={routes.RegisterPage}>Register</Link>
+            </Box>
+          )}
+        </StyledMenuBox>
+      </Container>
+    </StyleAppBar>
+  );
+};
+
+export default Navbar;
