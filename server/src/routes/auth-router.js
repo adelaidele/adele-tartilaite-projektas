@@ -7,6 +7,7 @@ import {
   updateBook,
   deleteBook,
 } from "../controllers/books-controller.js";
+import {createOrder} from "../controllers/order-controller.js";
 import authMiddleware from "../middlewares/auth-middleware.js";
 
 const router = Router();
@@ -26,5 +27,7 @@ router.post("/books", authMiddleware, addBook);
 router.patch("/books/:id", authMiddleware, updateBook);
 
 router.delete("/books/:id", authMiddleware, deleteBook);
+
+router.post("/order", authMiddleware, createOrder);
 
 export default router;

@@ -10,6 +10,13 @@ const annonymousInstance = axios.create({
   mode: 'no-cors',
 });
 
+const addOrder = async (orderData) => {
+  const { token } = store.getState().auth;
+  const response = await annonymousInstance.post('/order',  orderData);
+
+  return response.data;
+}
+
 const fetchBooks = async () => {
   const response = await annonymousInstance.get('/books');
   return response.data;
@@ -27,19 +34,12 @@ const addBook = async (bookData) => {
   return response.data;
 };
 
-const addUser = async (userData) => {
-  const response = await annonymousInstance.post(`/user`, userData);
-
-  return response.data;
-};
-
 const deleteBook = async (id) => {
   const response = await annonymousInstance.delete(`/books/${id}`);
   return response;
 };
 
 const updateBook = async (id, data) => {
-  console.log(id, data);
   const response = await annonymousInstance.put(`/books/${id}`, {
     ...data,
     id,
@@ -82,7 +82,7 @@ const APIService = {
   deleteBook,
   fetchFormatedBook,
   updateBook,
-  addUser,
+  addOrder,
 };
 
 export default APIService;
