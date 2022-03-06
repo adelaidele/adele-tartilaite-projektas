@@ -23,14 +23,23 @@ const addOrder = async (orderData) => {
 
 const fetchBooks = async (searchParams) => {
   const { token } = store.getState().auth;
-  
-  const { data } = await annonymousInstance.get(`books?${searchParams.toString()}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
-  return data;
+  if(!searchParams) {
+    const { data } = await annonymousInstance.get(`books`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return data;
+  } else {
+    const { data } = await annonymousInstance.get(`books?${searchParams.toString()}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return data;
+  }
 };
 
 const fetchBook = async (id) => {

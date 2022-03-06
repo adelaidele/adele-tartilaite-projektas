@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import SessionStorage from '../libs/SessionStorage';
-import APIService from "../services/api-service";
 
 const initialState = {
     cart: [],

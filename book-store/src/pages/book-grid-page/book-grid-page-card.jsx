@@ -38,7 +38,7 @@ const BookGridPageCard = ({ title, author, genre, price, img, id }) => {
   return (
     <Card sx={{ display: 'flex' }} elevation={5}>
       <CardMedia
-        sx={{ objectFit: 'contain', maxWidth: 250 }}
+        sx={{ objectFit: 'contain', width: 250 }}
         component="img"
         height="250"
         image={img}

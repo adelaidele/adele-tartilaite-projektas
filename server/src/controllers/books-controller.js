@@ -21,9 +21,10 @@ export const getBooks = (req, res) => {
   const books = database.data.books;
   const filters = database.data.filters;
   const genres = database.data.genres;
-
+  
   if(Object.keys(req.query).length === 0){
     res.status(200).json(books);
+    return;
   }
 
   const {

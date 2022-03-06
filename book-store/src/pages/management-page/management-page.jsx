@@ -1,18 +1,23 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import APIService from '../../services/api-service';
+import {
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableHead,
+  Typography,
+  TablePagination,
+  Paper,
+  Box,
+  Modal,
+  Button,
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Modal, Typography } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-
-import APIService from '../../services/api-service';
-import '../../index.css';
+import { theme } from '../../libs/ThemeCreator';
 
 const style = {
   position: 'absolute',
@@ -20,17 +25,25 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: theme.palette.white.main,
+  border: 'none',
   boxShadow: 24,
+  outline: 'none',
   p: 4,
 };
 
-const ManagementPage = () => {
-  const emptyBooks = [...new Array(20)].map((_, id) => ({ id }));
-  const [books, setBooks] = useState(emptyBooks);
+const ManagementTable = () => {
+  const [books, setBooks] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState({});
+  const [page, setPage] = useState(0);
+
+  const rowsPerPage = 5;
+
+  const handleChangePage = (event, newPage) => {
+    console.log(newPage);
+    setPage(newPage);
+  };
 
   const navigate = useNavigate();
 
@@ -45,6 +58,7 @@ const ManagementPage = () => {
 
   const handleDelete = (book) => {
     setSelectedBook(book);
+    console.log(selectedBook, book);
     setIsDeleteModalOpen(true);
   };
 
@@ -52,26 +66,41 @@ const ManagementPage = () => {
 
   useEffect(() => {
     (async () => {
-      const fetchedManagementBooks = await APIService.fetchAllBooks('');
+      const fetchedManagementBooks = await APIService.fetchAllBooks();
+
       setBooks(fetchedManagementBooks);
+      console.log(fetchedManagementBooks);
     })();
   }, []);
 
   const deleteBook = (id) => {
-    APIService.deleteBook(id);
-
-    handleModalClose(false);
-
-    (async () => {
-      const fetchedManagementBooks = await APIService.fetchAllBooks();
-      setBooks(fetchedManagementBooks);
-    })();
+    APIService.deleteBook(id).then(() => {
+      handleModalClose(false);
+      (async () => {
+        const fetchedManagementBooks = await APIService.fetchAllBooks();
+        setBooks(fetchedManagementBooks);
+      })();
+    });
   };
 
+  const columns = [
+    'Id',
+    'Image',
+    'Title',
+    'Author',
+    'Genre',
+    'Price',
+    'Actions',
+  ];
+
   return (
-    <Box>
-      <Button variant="contained" onClick={navigateToAddBook}>
-        add new book
+    <Box display="flex" flexDirection="column" flex={1}>
+      <Button
+        variant="contained"
+        sx={{ width: 150, height: 50, mb: '20px' }}
+        onClick={navigateToAddBook}
+      >
+        Add new book
       </Button>
       <Modal
         open={isDeleteModalOpen}
@@ -81,61 +110,94 @@ const ManagementPage = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Do you want to delete book {selectedBook.title}?
+            Do you want to delete book "{selectedBook.title}"?
           </Typography>
+          <Box sx={{display:'flex', justifyContent: 'flex-end'}}>
           <Button
             variant="contained"
+            color="error"
             onClick={() => deleteBook(selectedBook.id)}
+            sx={{marginRight: '15px'}}
           >
             Delete
           </Button>
-          <Button variant="contained" onClick={handleModalClose}>
+          <Button variant="contained" color="warning" onClick={handleModalClose}>
             Cancel
           </Button>
+          </Box>
         </Box>
       </Modal>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Id</TableCell>
-              <TableCell align="right">Image</TableCell>
-              <TableCell align="right">Title</TableCell>
-              <TableCell align="right">Author</TableCell>
-              <TableCell align="right">Genre</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="center">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {books.map((book) => (
-              <TableRow
-                key={book.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell align="right">{book.id}</TableCell>
-                <TableCell align="right">
-                  <img className="grid-image" src={book.img} alt="#" />
-                </TableCell>
-                <TableCell align="right">{book.title}</TableCell>
-                <TableCell align="right">{book.author}</TableCell>
-                <TableCell align="right">{book.genre}</TableCell>
-                <TableCell align="right">{book.price}</TableCell>
-                <TableCell align="center">
-                  <ModeEditOutlineOutlinedIcon
-                    onClick={() => navigateToEditBook(book.id)}
-                  />
-                  <HighlightOffOutlinedIcon
-                    onClick={() => handleDelete(book)}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Paper elevation={3}>
+        <Box display="flex" flexDirection="column" flex={1}>
+          <TableContainer>
+            <Table stickyHeader size="small">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell key={column}>
+                      <Typography variant="h6">{column}</Typography>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? books.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : books
+                ).map((book) => {
+                  return (
+                    <TableRow key={book.id} title="tableRow" hover>
+                      <TableCell>{book.id}</TableCell>
+                      <TableCell align="left">
+                        <img
+                          className="grid-image"
+                          style={{ width: 100, height: 150 }}
+                          src={book.img}
+                          alt="#"
+                        />
+                      </TableCell>
+                      <TableCell align="left">{book.title}</TableCell>
+                      <TableCell align="left">{book.author}</TableCell>
+                      <TableCell align="left">{book.genre}</TableCell>
+                      <TableCell align="left">{book.price}</TableCell>
+                      <TableCell>
+                        <ModeEditOutlineOutlinedIcon
+                          onClick={() => navigateToEditBook(book.id)}
+                        />
+                        <HighlightOffOutlinedIcon
+                          onClick={() => handleDelete(book)}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="flex-end"
+          flex={1}
+          padding={1}
+          paddingRight={10}
+        >
+          <TablePagination
+            page={page}
+            rowsPerPage={5}
+            count={books.length}
+            rowsPerPageOptions={[5]}
+            shape="rounded"
+            color="primary"
+            onPageChange={handleChangePage}
+          />
+        </Box>
+      </Paper>
     </Box>
   );
 };
 
-export default ManagementPage;
+export default ManagementTable;

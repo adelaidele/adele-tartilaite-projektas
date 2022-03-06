@@ -8,7 +8,7 @@ import BookGridPageProducts from './book-grid-page-products';
 const BookGridPage = () => {
   return (
     <ProductProvider>
-      <Paper
+      {/* <Paper
         sx={{
           width: '100%',
           height: '250px',
@@ -18,7 +18,7 @@ const BookGridPage = () => {
           alignItems: 'center',
         }}
         elevation={5}
-      />
+      /> */}
       <Box>
         <Header />
         <Box
