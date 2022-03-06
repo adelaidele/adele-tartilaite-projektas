@@ -4,7 +4,7 @@ import RangeFilter from './range-filter';
 import { ProductContext } from '../contexts/product-context';
 
 const HomePageFilters = () => {
-  const { filters } = useContext(ProductContext);
+  const { filters, changeFilter } = useContext(ProductContext);
   return (
     <AppBar
       position="sticky"
@@ -18,10 +18,10 @@ const HomePageFilters = () => {
       }}
     >
       <Paper sx={{ flexBasis: 240, flexShrink: 0, p: 2 }} elevation={3}>
-        {filters.map(({ id, ...props }) => {
+        {filters.map(({ type, id, ...props }) => {
           return (
             <React.Fragment key={id}>
-              <RangeFilter {...props} />
+              <RangeFilter {...props} changeFilter={(newProps) => changeFilter(id, type, newProps)} />
             </React.Fragment>
           );
         })}

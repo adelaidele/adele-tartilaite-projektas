@@ -52,9 +52,8 @@ const ManagementPage = () => {
 
   useEffect(() => {
     (async () => {
-      const fetchedManagementBooks = await APIService.fetchAllBooks();
+      const fetchedManagementBooks = await APIService.fetchAllBooks('');
       setBooks(fetchedManagementBooks);
-      console.log(fetchedManagementBooks);
     })();
   }, []);
 

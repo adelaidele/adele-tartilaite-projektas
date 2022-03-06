@@ -3,7 +3,7 @@ import { Typography, Paper, Button, Divider } from '@mui/material';
 import { ProductContext } from '../contexts/product-context';
 
 const HomePageHeader = () => {
-  const { genres, selectedGenre, changeGenre } = useContext(ProductContext);
+  const { genres, selectedGenre, changeGenre } = useContext(ProductContext); // is konteksto pasiemam norimas reiksmes
   return (
     <Paper
       sx={{ display: 'flex', justifyContent: 'space-between', p: 1 }}

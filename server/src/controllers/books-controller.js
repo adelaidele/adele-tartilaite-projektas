@@ -1,9 +1,51 @@
 import database from "../database/index.js";
 import { v4 as createId } from "uuid";
 
+const filterByRange = (books, filter, queryParams) => {
+  const min = Number(queryParams[`${filter.name}_min`]);
+  const max = Number(queryParams[`${filter.name}_max`]);
+  if (min) {
+    books = books.filter(x => x[filter.property].value >= min);
+  }
+  if (max) {
+    books = books.filter(x => x[filter.property].value <= max);
+  }
+  return books;
+};
+
+const filterFunctionMap = {
+  range: filterByRange,
+}
+
 export const getBooks = (req, res) => {
   const books = database.data.books;
-  res.status(200).json(books);
+  const filters = database.data.filters;
+  const genres = database.data.genres;
+
+  if(Object.keys(req.query).length === 0){
+    res.status(200).json(books);
+  }
+
+  const {
+    genre: genreId,
+    ...queryParams
+  } = req.query;
+
+  let selectedBooks = books
+  .filter(x => x.genre === genreId)
+  .map(({ genre, ...book }) => book);
+
+  const genre = genres.find(x => x.id === genreId);
+  const genreFilters = genre.filters.map(filterId => filters.find(x => x.id === filterId));
+
+  genreFilters.forEach(filter => {
+    selectedBooks = filterFunctionMap[filter.type](selectedBooks, filter, queryParams);
+    if (filter.collection) {
+      selectedBooks = mapWithFilterCollection(selectedBooks, filter, database.data);
+    }
+  });
+
+  res.status(200).json(selectedBooks);
 };
 
 export const getBook = (req, res) => {

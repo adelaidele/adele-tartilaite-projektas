@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import { config } from 'dotenv';
 import authRouter from './routes/auth-router.js';
+import genresRouter from './routes/genres-router.js';
+import filtersRouter from './routes/filters-router.js';
 import cors from 'cors';
 import './database/index.js';
 

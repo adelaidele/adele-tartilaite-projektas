@@ -36,7 +36,6 @@ const ProfilePageForm = ({ name, surname, email }) => {
   const [emailBeingChecked, setEmailBeingChecked] = useState(false);
   const [emailAvailable, setEmailAvailable] = useState(true);
   const [open, setOpen] = useState(false);
-  console.log(theme.palette.primary.light);
 
   const onSubmit = () => {
     setOpen(true);

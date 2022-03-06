@@ -25,8 +25,6 @@ const Navbar = ({ sidebarIcon }) => {
     display: 'flex',
   }));
 
-  console.log(user);
-
   return (
     <StyleAppBar position="sticky" theme={theme}>
       <Container
@@ -40,7 +38,7 @@ const Navbar = ({ sidebarIcon }) => {
           {sidebarIcon ?? null}
           <Link to={routes.HomePage}>Home</Link>
 
-          <Link to={routes.BookGridPage}>Books</Link>
+          {user ? <Link to={routes.BookGridPage}>Books</Link> : null}
           {user ? <Link to={routes.ProfilePage}>Profile</Link> : null}
           {user && user.role === 'ADMIN' ? (
             <Link to={routes.ManagementPage}>Management panel</Link>

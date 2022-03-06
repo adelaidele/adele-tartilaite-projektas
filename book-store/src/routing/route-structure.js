@@ -22,17 +22,17 @@ export default [
       {
         path: "checkout",
         pageName: "Checkout",
-        auth: USER,
+        auth: LOGGED_IN,
       },
       {
         path: "books",
         pageName: "BookGridPage",
-        auth: USER
+        auth: LOGGED_IN
       },
       {
         path: "books/:id",
         pageName: "SingleBookPage",
-        auth: USER,
+        auth: LOGGED_IN,
       },
       {
         path: "*",
@@ -41,7 +41,7 @@ export default [
       {
         path: "cart",
         pageName: "Cart",
-        auth: USER
+        auth: LOGGED_IN
       },
       {
         path: 'management',

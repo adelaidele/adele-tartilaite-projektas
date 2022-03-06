@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
-import Header from './home-page-header';
-import Filters from './home-page-filters';
+import React from 'react';
+import { Paper, Box } from '@mui/material';
 import ProductProvider from './contexts/product-context';
-import BookGridPageGrid from '../../pages/book-grid-page/book-grid-page-grid';
-import BookGridPageCard from '../../pages/book-grid-page/book-grid-page-card';
-import APIService from '../../services/api-service';
+import Filters from './home-page-filters';
+import Header from './home-page-header';
+import BookGridPageProducts from './book-grid-page-products';
 
 const BookGridPage = () => {
-  const emptyBooks = [...new Array(20)].map((_, id) => ({ id }));
-  const [books, setBooks] = useState(emptyBooks);
-
-  useEffect(() => {
-    (async () => {
-      const fetchedBooks = await APIService.fetchAllBooks();
-      setBooks(fetchedBooks);
-    })();
-  }, []);
   return (
     <ProductProvider>
       <Paper
@@ -29,11 +18,7 @@ const BookGridPage = () => {
           alignItems: 'center',
         }}
         elevation={5}
-      >
-        <Typography variant="h2" gutterBottom component="div">
-          Browse our selection of books!
-        </Typography>
-      </Paper>
+      />
       <Box>
         <Header />
         <Box
@@ -45,11 +30,7 @@ const BookGridPage = () => {
           }}
         >
           <Filters />
-          <BookGridPageGrid>
-            {books.map((book) => (
-              <BookGridPageCard key={book.id} {...book}></BookGridPageCard>
-            ))}
-          </BookGridPageGrid>
+          <BookGridPageProducts />
         </Box>
       </Box>
     </ProductProvider>

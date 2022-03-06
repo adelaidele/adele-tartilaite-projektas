@@ -12,13 +12,10 @@ const Checkout = () => {
   const { cart } = useSelector(selectCart);
   const { user } = useSelector(selectAuth);
 
-  console.log(cart);
-
   const calculateTotalSum = (items) => {
     let price = 0;
     items.forEach((x) => {
       const itemPrice = x.price.replace(" EUR", "");
-      console.log(itemPrice);
       price += parseFloat(itemPrice) * x.qty;
     });
 
@@ -26,11 +23,9 @@ const Checkout = () => {
   };
 
   const handleBuy = () => {
-    console.log(cart);
     let price = 0;
     cart.forEach((x) => {
         const itemPrice = x.price.replace(" EUR", "");
-        console.log(itemPrice);
         price += parseFloat(itemPrice) * x.qty;
       });
     

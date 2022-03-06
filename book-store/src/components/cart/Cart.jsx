@@ -31,7 +31,6 @@ const Cart = () => {
     let price = 0;
     items.forEach((x) => {
       const itemPrice = x.price.replace(' EUR', '');
-      console.log(itemPrice);
       price += parseFloat(itemPrice) * x.qty;
     });
 
@@ -42,14 +41,15 @@ const Cart = () => {
     dispatch(adjustQty(item));
   };
 
-  console.log(cart);
-
   useEffect(() => {
     setTotalPrice(calculateTotalSum(cart));
   }, [cart]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'column', alignItems: 'flex-end', p: 5 }}
+    >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow></TableRow>
@@ -70,10 +70,10 @@ const Cart = () => {
       </Typography>
       <Button
         variant="contained"
-        sx={{ width: 150, height: 50, mb: '20px' }}
+        sx={{ width: 150, height: 50, m: '20px 0' }}
         onClick={navigateToAddBook}
       >
-        Add new book
+        CHECKOUT
       </Button>
     </TableContainer>
   );

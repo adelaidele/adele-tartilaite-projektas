@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow, Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const CartItem = ({ item, onQtyChange, onDelete }) => {
   const [input, setInput] = useState(item.qty);
 
   const onChangeHandler = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
     onQtyChange({ ...item, qty: e.target.value });
   };
 
@@ -15,6 +15,11 @@ const CartItem = ({ item, onQtyChange, onDelete }) => {
       key={item.id}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
+      <TableCell align="center">
+        <Button onClick={() => onDelete(item.id)}>
+          <CloseIcon />
+        </Button>
+      </TableCell>
       <TableCell component="th">
         <img
           style={{ width: '50px', height: '100px' }}

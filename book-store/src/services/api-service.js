@@ -21,10 +21,10 @@ const addOrder = async (orderData) => {
   return response.data;
 }
 
-const fetchBooks = async () => {
+const fetchBooks = async (searchParams) => {
   const { token } = store.getState().auth;
   
-  const { data } = await annonymousInstance.get('/books', {
+  const { data } = await annonymousInstance.get(`books?${searchParams.toString()}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ const fetchBook = async (id) => {
       'Content-Type': 'application/json',
     },
   });
-  console.log(response.data);
   return response.data;
 }
 
@@ -60,7 +59,6 @@ const addBook = async (bookData) => {
 
 const deleteBook = async (id) => {
   const { token } = store.getState().auth;
-  console.log(id);
   const response  = await annonymousInstance.delete(`/books/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -81,9 +79,9 @@ const updateBook = async (id, data) => {
   return response;
 }
 
-const fetchAllBooks = async () => {
+const fetchAllBooks = async (searchParams) => {
   const [books] = await Promise.all([
-    fetchBooks()
+    fetchBooks(searchParams)
   ]);
 
   const formatedBooks = books.map(

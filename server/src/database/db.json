@@ -1,4 +1,14 @@
 {
+  "filters": [
+    {
+      "id": "1",
+      "name": "price",
+      "type": "range",
+      "property": "price",
+      "min": 18.49,
+      "max": 24.39
+    }
+  ],
   "users": [
     {
       "id": "2",
@@ -7,14 +17,6 @@
       "name": "Adminass",
       "surname": "Gediminas",
       "role": "ADMIN"
-    },
-    {
-      "id": "2ac817ad-f7b6-4d0e-a911-3f4f639c78f1",
-      "email": "user1@gmail.com",
-      "name": "Bybiukas",
-      "surname": "Bybalas",
-      "password": "Vilnius123",
-      "role": "USER"
     },
     {
       "id": "cb6d106f-7698-410c-9d45-7f129e0f62eb",
@@ -46,6 +48,14 @@
       "name": "test",
       "surname": "test",
       "password": "Kakasis123",
+      "role": "USER"
+    },
+    {
+      "id": "152117b2-8ef9-4c2d-8b35-236d1d47b93e",
+      "email": "test1@test.com",
+      "name": "Test",
+      "surname": "testeris",
+      "password": "TEST1234",
       "role": "USER"
     }
   ],
@@ -248,35 +258,22 @@
       "id": "1",
       "title": "Romance",
       "filters": [
-        "1",
-        "2"
+        "1"
       ]
     },
     {
       "id": "2",
       "title": "Science fiction",
       "filters": [
-        "1",
-        "2"
+        "1"
       ]
     },
     {
       "id": "3",
       "title": "Self-help",
       "filters": [
-        "1",
-        "2"
+        "1"
       ]
-    }
-  ],
-  "filters": [
-    {
-      "id": "1",
-      "name": "price",
-      "type": "range",
-      "property": "price",
-      "min": 24,
-      "max": 24.39
     }
   ],
   "orders": [
@@ -304,6 +301,20 @@
       "id": "pim",
       "qty": 1,
       "totalAmount": 43.98,
+      "status": "COMPLETED",
+      "userId": "2"
+    },
+    {
+      "id": "pim",
+      "qty": 2,
+      "totalAmount": 41.379999999999995,
+      "status": "COMPLETED",
+      "userId": "152117b2-8ef9-4c2d-8b35-236d1d47b93e"
+    },
+    {
+      "id": "pim",
+      "qty": 1,
+      "totalAmount": 24.39,
       "status": "COMPLETED",
       "userId": "2"
     }
