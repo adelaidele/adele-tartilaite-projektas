@@ -43,6 +43,7 @@ const Alert = React.forwardRef((props, ref) => (
 
 const ManagementPageBookForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
+  const [genres, setGenres] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const { id } = useParams();
   const [openNotification, setOpenNotification] = useState(false);
@@ -66,6 +67,9 @@ const ManagementPageBookForm = () => {
         setFormValues(formatedBook);
       }
     })();
+    APIService.fetchGenres().then((result) => {
+      setGenres(result);
+    });
   }, []);
 
   const handleClose = () => {
@@ -133,18 +137,6 @@ const ManagementPageBookForm = () => {
           <Grid item xs={12} lg={12}>
             <TextField
               fullWidth
-              id="genre"
-              name="genre"
-              label="genre"
-              value={formik.values.genre}
-              onChange={formik.handleChange}
-              error={formik.touched.genre && Boolean(formik.errors.genre)}
-              helperText={formik.touched.genre && formik.errors.genre}
-            />
-          </Grid>
-          <Grid item xs={12} lg={12}>
-            <TextField
-              fullWidth
               id="img"
               name="img"
               label="Image url"
@@ -153,6 +145,29 @@ const ManagementPageBookForm = () => {
               error={formik.touched.img && Boolean(formik.errors.img)}
               helperText={formik.touched.img && formik.errors.img}
             />
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <TextField
+                  variant="outlined"
+                  name="genre"
+                  id="genre"
+                  select
+                  label="Genre"
+                  value={formik.values.genre}
+                  onChange={formik.handleChange}
+                  error={formik.touched.genre && Boolean(formik.errors.genre)}
+                  helperText={formik.touched.genre && formik.errors.genre}
+                >
+                  {genres.map((option) => (
+                    <MenuItem key={option.id} value={option.id}>
+                      {option.title}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </FormControl>
+            </Box>
           </Grid>
           <Grid item xs={6} sm={6}>
             <TextField

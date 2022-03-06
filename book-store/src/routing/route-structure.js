@@ -6,7 +6,7 @@ export default [
     pageName: "PageLayout",
     children: [
       {
-        path: 'home',
+        path: '/',
         pageName: "HomePage",
       },
       {
