@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import { config } from 'dotenv';
 import authRouter from './routes/auth-router.js';
 import genresRouter from './routes/genres-router.js';
+import profileRouter from './routes/profile-router.js';
 import filtersRouter from './routes/filters-router.js';
 import cors from 'cors';
 import './database/index.js';
@@ -27,6 +28,7 @@ server.use(express.json());
 server.use('/api', authRouter);
 server.use('/api/genres', genresRouter);
 server.use('/api/filters', filtersRouter);
+server.use('/api/profile', profileRouter);
 
 // Serveriui perduodamos užklausos, kurios bus gautos į šio kompiuterio 5000'inį port'ą
 server.listen(SERVER_PORT, () => {

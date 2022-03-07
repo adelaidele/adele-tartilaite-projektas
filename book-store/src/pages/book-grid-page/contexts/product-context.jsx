@@ -11,7 +11,7 @@ const ProductProvider = ({ children }) => {
   const {filters, changeFilter} = useFilters(selectedGenre); 
   const books = useBooks(selectedGenre);
 
-  const contextValue = useMemo(() => ({ //hooksas skirtas duomenu prisiminimui, reiksmes bus perskaiciuojamos jei tik kazkas is dependencies pasikeistu
+  const contextValue = useMemo(() => ({
     books,
     filters,
     genres,
