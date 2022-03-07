@@ -91,7 +91,7 @@ const RangeFilter = ({
           sx={(theme) => ({
             '& .MuiSlider-thumb': {
               borderRadius: 0,
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.primary.main,
               height: 16,
               width: 16,
               '&:hover': {

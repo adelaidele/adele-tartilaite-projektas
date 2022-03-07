@@ -15,7 +15,7 @@
       "email": "admin@gmail.com",
       "password": "Vilnius123",
       "name": "Adminas",
-      "surname": "Gediminas",
+      "surname": "Gediminaitis",
       "role": "ADMIN"
     },
     {
@@ -317,6 +317,41 @@
       "totalAmount": 24.39,
       "status": "COMPLETED",
       "userId": "2"
+    },
+    {
+      "id": "pim",
+      "qty": 1,
+      "totalAmount": 52.47,
+      "status": "COMPLETED",
+      "userId": "2"
+    },
+    {
+      "qty": 0,
+      "totalAmount": 0,
+      "status": "COMPLETED",
+      "userId": "2",
+      "id": "7f1bb12e-ee2a-4625-a7c6-24ab4217fdbe"
+    },
+    {
+      "qty": 1,
+      "totalAmount": 48.78,
+      "status": "COMPLETED",
+      "userId": "2",
+      "id": "e429c2f6-de04-43ca-a7f3-abe09d660b7e"
+    },
+    {
+      "qty": 1,
+      "totalAmount": 24.39,
+      "status": "COMPLETED",
+      "userId": "2",
+      "id": "a467336a-b2c9-49d9-8e5f-8a857e3636db"
+    },
+    {
+      "qty": 1,
+      "totalAmount": 24.39,
+      "status": "COMPLETED",
+      "userId": "2",
+      "id": "d25b9a32-295b-42b3-ba7a-3a454be0e597"
     }
   ]
 }

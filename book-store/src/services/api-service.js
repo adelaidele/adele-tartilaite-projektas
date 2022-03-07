@@ -116,8 +116,6 @@ const fetchFormatedBooks = async (searchParams) => {
 
   const formatedBooks = books.map(
     ({ title, props, price, genre, ...rest }) => {
-      console.log(books);
-
       const book = {
         ...rest,
         title,
@@ -133,13 +131,15 @@ const fetchFormatedBooks = async (searchParams) => {
 };
 
 const fetchFormatedBook = async (id) => {
-  const [book] = await Promise.all([
-    fetchBook(id)
+  const [book, genres] = await Promise.all([
+    fetchBook(id),
+    fetchGenres()
   ]);
 
   const formattedBook = {
     ...book,
-    price: `${book.price.value} ${book.price.currency}`
+    price: `${book.price.value} ${book.price.currency}`,
+    genre: genres.find(x => x.id === book.genre).title
   }
 
   return formattedBook;

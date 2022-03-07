@@ -221,7 +221,7 @@ const ManagementPageBookForm = () => {
             severity="success"
             sx={{ width: '100%' }}
           >
-            This is a success message!
+            Success!
           </Alert>
         </Snackbar>
       </Box>
