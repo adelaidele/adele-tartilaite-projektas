@@ -34,7 +34,7 @@ export const getBooks = (req, res) => {
 
   let selectedBooks = books
   .filter(x => x.genre === genreId)
-  .map(({ genre, ...book }) => book);
+  .map(({ ...book }) => book);
 
   const genre = genres.find(x => x.id === genreId);
   const genreFilters = genre.filters.map(filterId => filters.find(x => x.id === filterId));

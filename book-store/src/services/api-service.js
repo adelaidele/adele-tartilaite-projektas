@@ -108,6 +108,30 @@ const fetchAllBooks = async (searchParams) => {
   return formatedBooks;
 };
 
+const fetchFormatedBooks = async (searchParams) => {
+  const [books, genres] = await Promise.all([
+    fetchBooks(searchParams),
+    fetchGenres()
+  ]);
+
+  const formatedBooks = books.map(
+    ({ title, props, price, genre, ...rest }) => {
+      console.log(books);
+
+      const book = {
+        ...rest,
+        title,
+        price: `${price.value} ${price.currency}`,
+        genre: genres.find(x => x.id === genre).title
+      };
+
+      return book;
+    }
+  );
+
+  return formatedBooks;
+};
+
 const fetchFormatedBook = async (id) => {
   const [book] = await Promise.all([
     fetchBook(id)
@@ -183,6 +207,7 @@ const APIService = {
   addOrder,
   fetchFilters,
   fetchGenres,
+  fetchFormatedBooks
 };
 
 export default APIService;

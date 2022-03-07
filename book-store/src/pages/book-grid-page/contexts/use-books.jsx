@@ -8,7 +8,7 @@ const useBooks = () => {
   useEffect(() => {
     (async () => {
       if (searchParams.get('genre')) {
-        const fetchedBooks = await APIService.fetchAllBooks(searchParams);
+        const fetchedBooks = await APIService.fetchFormatedBooks(searchParams);
         setBooks(fetchedBooks);
       }
     })();
