@@ -57,6 +57,14 @@
       "surname": "testeris",
       "password": "TEST1234",
       "role": "USER"
+    },
+    {
+      "id": "5291cc37-7c18-42fc-b5d9-1b21bc0711e4",
+      "email": "tartilaite3@gmail.com",
+      "name": "adele",
+      "surname": "lalalala",
+      "password": "Esuadeleadele1",
+      "role": "USER"
     }
   ],
   "books": [

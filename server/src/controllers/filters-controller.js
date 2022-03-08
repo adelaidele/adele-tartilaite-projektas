@@ -13,9 +13,9 @@ export const getFilters = (req, res) => {
         filter.min = 0;
         filter.max = 0;
         if (books.length > 0) {
-          const sortedBooks = books.sort((a, b) => a[filter.property.value] - b[filter.property.value]);
-          filter.min = sortedBooks[sortedBooks.length - 1].price.value;
-          filter.max = sortedBooks[0].price.value;
+          const sortedBooks = books.sort((a, b) => a.price.value - b.price.value);
+          filter.min = sortedBooks[0].price.value;
+          filter.max = sortedBooks[sortedBooks.length - 1].price.value;
         }
 
     return filter;
