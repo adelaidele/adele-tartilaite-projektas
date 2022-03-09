@@ -1,5 +1,5 @@
 import React from "react";
-import SquareContainer from "./../../components/square-container";
+import SquareContainer from "../../components/containers/square-container";
 
 const SingleBookPageImage = ({ img }) => (
   <SquareContainer>

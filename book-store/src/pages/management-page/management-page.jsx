@@ -41,7 +41,6 @@ const ManagementTable = () => {
   const rowsPerPage = 5;
 
   const handleChangePage = (event, newPage) => {
-    console.log(newPage);
     setPage(newPage);
   };
 
@@ -58,7 +57,6 @@ const ManagementTable = () => {
 
   const handleDelete = (book) => {
     setSelectedBook(book);
-    console.log(selectedBook, book);
     setIsDeleteModalOpen(true);
   };
 
@@ -67,9 +65,7 @@ const ManagementTable = () => {
   useEffect(() => {
     (async () => {
       const fetchedManagementBooks = await APIService.fetchFormatedBooks();
-
       setBooks(fetchedManagementBooks);
-      console.log(fetchedManagementBooks);
     })();
   }, []);
 

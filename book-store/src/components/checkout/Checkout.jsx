@@ -48,13 +48,15 @@ const Checkout = () => {
 
   const handleBuy = () => {
     let price = 0;
+    let qty = 0;
     cart.forEach((x) => {
       const itemPrice = x.price.replace(' EUR', '');
       price += parseFloat(itemPrice) * x.qty;
+      qty += x.qty;
     });
 
     APIService.addOrder({
-      qty: cart.length,
+      qty: qty,
       totalAmount: price,
       status: 'COMPLETED',
       userId: user.id,

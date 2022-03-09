@@ -8,7 +8,6 @@ const requester = axios.create({
 
 const updateProfile = async (formData) => {
   const { token } = store.getState().auth;
-  console.log(formData);
   try {
     const { data } = await requester.patch('', formData, {
       headers: {

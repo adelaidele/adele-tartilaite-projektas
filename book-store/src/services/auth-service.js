@@ -24,7 +24,6 @@ const login = async ({ email, password }, redirectTo) => {
 
 const checkEmail = async (email) => {
   const { data } = await requester.get(`/check-email?email=${email}`);
-  console.log(data);
   return data.available;
 };
 
