@@ -84,12 +84,14 @@ const ManagementPageBookForm = () => {
       const request = {
         ...values,
         price: {
-          value: values.price,
+          value: parseFloat(values.price),
           currency: values.currency,
         },
       };
 
       const { currency, ...newRequest } = request;
+
+      console.log(request);
       if (editMode) {
         APIService.updateBook(id, request);
         setOpenNotification(true);

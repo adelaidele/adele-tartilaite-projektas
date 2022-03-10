@@ -17,6 +17,7 @@ const RangeFilter = ({
   changeFilter,
 }) => {
   const [currRange, setCurrRange] = useState([currMin, currMax]);
+  console.log(currMin, currMax);
   const [minInputValue, setMinInputValue] = useState(currMin);
   const [maxInputValue, setMaxInputValue] = useState(currMax);
 

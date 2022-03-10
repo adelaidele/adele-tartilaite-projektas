@@ -4,9 +4,7 @@
       "id": "1",
       "name": "price",
       "type": "range",
-      "property": "price",
-      "min": 16.99,
-      "max": 24.39
+      "property": "price"
     }
   ],
   "users": [
@@ -259,6 +257,17 @@
         "value": 18.49
       },
       "img": "https://thumb.knygos-static.lt/RHPVacc6LtqOGqh8fj61JI3J10Q=/fit-in/320x430/filters:cwatermark(static/wm.png,500,75,30)/images/books/2588832/1616667865_Maisto_ragautoja_450x652_1.jpg"
+    },
+    {
+      "id": "77cd3c41-9796-4aeb-9eb9-8ca728314c86",
+      "title": "test",
+      "genre": "1",
+      "author": "test",
+      "img": "test",
+      "price": {
+        "value": 12,
+        "currency": "EUR"
+      }
     }
   ],
   "genres": [
